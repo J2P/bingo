@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = {
   entry: {
     src: ['./src/js/app.js']
@@ -22,8 +21,6 @@ var config = {
       { test: /\.css$/, loader: 'style-loader!css-loader' }
     ]
   }
-
-  // plugins: [new HtmlWebpackPlugin()]
 };
 
 module.exports = config;
