@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var config = {
   entry: {
-    src: ['./src/js/app.js']
+    src: ['./src/app.js']
   },
 
   output: {

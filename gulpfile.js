@@ -4,7 +4,7 @@ var webpack = require('gulp-webpack');
 var webpackConfig = require('./webpack.config');
 
 gulp.task('build', function() {
-	return gulp.src('./src/js/app.js')
+	return gulp.src('./src/app.js')
 		.pipe(webpack(webpackConfig))
 		.pipe(gulp.dest('build/'))
 		.pipe(connect.reload());
