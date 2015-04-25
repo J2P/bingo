@@ -3,26 +3,17 @@ var Cell = require('./Cell.js');
 
 var Board = React.createClass({
 	render: function() {
+		var cells = this.props.data.map(function(cell) {
+			return (
+				<Cell value={cell.value} />
+			);
+		});
 		return (
 			<div className="board">
-				<div className="row">
-					<Cell/><Cell/><Cell/><Cell/><Cell/>
-				</div>
-				<div className="row">
-					<Cell/><Cell/><Cell/><Cell/><Cell/>
-				</div>
-				<div className="row">
-					<Cell/><Cell/><Cell/><Cell/><Cell/>
-				</div>
-				<div className="row">
-					<Cell/><Cell/><Cell/><Cell/><Cell/>
-				</div>
-				<div className="row">
-					<Cell/><Cell/><Cell/><Cell/><Cell/>
-				</div>
+				{cells}
 			</div>
 		);
 	}
 });
 
-moduel.exports = Board;
+module.exports = Board;
