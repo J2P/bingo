@@ -15,14 +15,9 @@ var Bingo = React.createClass({
 	},
 	
 	render: function() {
-		// var tiles = this.state.board.titles.filter(function(tile) {
-		// 	return this.value;
-		// }).map(function(tile) {
-		// 	return (<Tile ref={tile.id} key={tile.id} tile={tile} />);
-		// });
 		return (
 			<div className="bingo">
-				<Board />
+				<Board data={this.state.board}/>
 			</div>
 		);
 	}
