@@ -1,17 +1,30 @@
 var React = require('react');
 var Board = require('./Board.js');
 
+function getRandomNumbers() {
+	var board = [];
+	var numbers = [
+		1, 2, 3, 4, 5, 
+		6, 7, 8, 9, 10,
+		11, 12, 13, 14, 15,
+		16, 17, 18, 19, 20,
+		21, 22, 23, 24, 25
+	];
+	for (var i = 0; i < 25; i++) {
+		board.push({value: numbers.splice(Math.floor(Math.random() * numbers.length), 1)});	
+	}
+	return board
+}
+
 var Bingo = React.createClass({
 	getInitialState: function() {
 		return {
-			board: [
-				{value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5},
-				{value: 6}, {value: 7}, {value: 8}, {value: 9}, {value: 10},
-				{value: 11}, {value: 12}, {value: 13}, {value: 14}, {value: 15},
-				{value: 16}, {value: 17}, {value: 18}, {value: 19}, {value: 20},
-				{value: 21}, {value: 22}, {value: 23}, {value: 24}, {value: 25}
-			]
+			board: []
 		}
+	},
+
+	componentDidMount: function() {
+		this.setState({board: getRandomNumbers()});
 	},
 	
 	render: function() {
