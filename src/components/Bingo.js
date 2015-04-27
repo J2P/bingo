@@ -1,6 +1,5 @@
 var React = require('react');
-var Board = require('./Board.js');
-
+var Cell = require('./Cell.js');
 
 var Bingo = React.createClass({
 	getInitialState: function() {
@@ -10,16 +9,26 @@ var Bingo = React.createClass({
 	},
 
 	componentDidMount: function() {
-		this.setState({board: getRandomNumbers()});
+		this.setState({board: this._getRandomNumbers()});
 	},
 	
 	render: function() {
+		var self = this;
+		var cells = this.state.board.map(function(cell) {
+			return (
+				<Cell 
+					value={cell.value} 
+					index={cell.id} 
+					selected={cell.selected} />
+			);
+		});
+
 		return (
 			<div className="bingo">
-				<Board data={this.state.board}/>
+				{cells}
 			</div>
 		);
-	}
+	},
 
 	_getRandomNumbers: function() {
 		var board = [];

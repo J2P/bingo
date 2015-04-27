@@ -16,12 +16,12 @@ h1 {
     padding: 30px;
 }
 
-.bingo {
+#container {
     width: 100%;
     height: 100%;
 }
 
-.board {
+.bingo {
     overflow: hidden;
     position: relative;
     width: 800px;

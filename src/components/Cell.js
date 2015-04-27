@@ -3,16 +3,18 @@ var React = require('react/addons');
 var Cell = React.createClass({
 	getInitialState: function() {
 		return {
-			selected: false 
+			selected: this.props.selected 
 		};
 	},
+
 	handleClick: function() {
-		this.setState({ selected: true });
+		this.setState({selected: true});
 	},
+
 	render: function() {
 		var classes = React.addons.classSet({
-				'cell': true,
-        'selected': this.state.selected
+				cell: true,
+        selected: this.state.selected
     });
 
 		return (
