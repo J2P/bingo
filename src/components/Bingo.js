@@ -1,3 +1,4 @@
+var socket = io();
 var React = require('react');
 var Cell = require('./Cell.js');
 

@@ -1,3 +1,4 @@
+var socket = io();
 var React = require('react/addons');
 
 var Cell = React.createClass({
