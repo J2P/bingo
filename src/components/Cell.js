@@ -2,20 +2,14 @@ var socket = io();
 var React = require('react/addons');
 
 var Cell = React.createClass({
-	getInitialState: function() {
-		return {
-			selected: this.props.selected 
-		};
-	},
-
 	handleClick: function() {
-		this.setState({selected: true});
+		this.props.onClick(this);
 	},
 
 	render: function() {
 		var classes = React.addons.classSet({
 				cell: true,
-        selected: this.state.selected
+        selected: this.props.selected
     });
 
 		return (
