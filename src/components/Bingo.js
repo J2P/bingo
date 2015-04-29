@@ -7,12 +7,23 @@ var Bingo = React.createClass({
 		socket.on('send:number', this.selectNumber);
 
 		return {
+			blue: false,
+      green: false,
+      red: false,
+      orange: false,
+      purple: false,
 			board: []
 		}
 	},
 
 	componentDidMount: function() {
-		this.setState({board: this._getRandomNumbers()});
+		var colors = ['blue', 'green', 'red', 'orange', 'purple'];
+		var data = { board: this.getRandomNumbers() };
+
+		data[colors.splice(Math.floor(Math.random() * colors.length), 1)[0]] = true;
+		this.setState(data);
+	},
+
 	handleClick: function(cell) {
 		var number = cell.props.value;
 		socket.emit('send:number', {number: number});
@@ -25,14 +36,27 @@ var Bingo = React.createClass({
 			return (
 				<Cell 
 					value={cell.value} 
-					index={cell.id} 
-					selected={cell.selected} />
+					key={cell.id} 
+					selected={cell.selected} 
+					onClick={self.handleClick} />
 			);
 		});
+		
+		var classes = React.addons.classSet({
+				container: true,
+        blue: this.state.blue,
+        green: this.state.green,
+        red: this.state.red,
+        orange: this.state.orange,
+        purple: this.state.purple,
+    });
 
 		return (
-			<div className="bingo">
-				{cells}
+			<div className={classes}>
+				<h1>Bingo Game</h1>
+				<div className="bingo">
+					{cells}
+				</div>
 			</div>
 		);
 	},

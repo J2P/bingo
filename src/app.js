@@ -4,5 +4,5 @@ var Bingo = require('./components/Bingo.js');
 
 React.render(
 	<Bingo />,
-	document.getElementById('container')
+	document.body
 );
