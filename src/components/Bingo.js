@@ -3,25 +3,28 @@ var React = require('react');
 var Cell = require('./Cell.js');
 
 var Bingo = React.createClass({
+	setInitial: function(data) {
+		var initData = { board: data.cells };
+		initData[data.color] = true;
+		this.setState(initData);
+	},
+
 	getInitialState: function() {
 		socket.on('send:number', this.selectNumber);
+		socket.on('init', this.setInitial);
 
 		return {
 			blue: false,
-      green: false,
-      red: false,
-      orange: false,
-      purple: false,
+	      	green: false,
+	      	red: false,
+	      	orange: false,
+	      	purple: false,
 			board: []
 		}
 	},
 
 	componentDidMount: function() {
-		var colors = ['blue', 'green', 'red', 'orange', 'purple'];
-		var data = { board: this.getRandomNumbers() };
-
-		data[colors.splice(Math.floor(Math.random() * colors.length), 1)[0]] = true;
-		this.setState(data);
+		socket.emit('join', {user:'user' + Math.random().toString(36).substring(7)});
 	},
 
 	handleClick: function(cell) {
