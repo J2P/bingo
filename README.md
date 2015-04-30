@@ -3,7 +3,7 @@
 ## Installation
 
 ``` bash
-$ git clone https://github.com/J2P/bingo.git
+$ git clone https://github.com/J2P/react-bingo.git
 $ cd bingo
 $ npm install
 $ gulp
