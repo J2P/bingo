@@ -4,7 +4,7 @@
 
 ``` bash
 $ git clone https://github.com/J2P/react-bingo.git
-$ cd bingo
+$ cd react-bingo
 $ npm install
 $ gulp
 ```
