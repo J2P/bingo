@@ -1,4 +1,3 @@
-var socket = io();
 var React = require('react/addons');
 
 var Cell = React.createClass({
@@ -8,8 +7,8 @@ var Cell = React.createClass({
 
 	render: function() {
 		var classes = React.addons.classSet({
-				cell: true,
-        selected: this.props.selected
+			cell: true,
+			selected: this.props.selected
     });
 
 		return (
