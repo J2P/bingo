@@ -8,6 +8,7 @@ var Bingo = React.createClass({
 		socket.on('change:number', this.changeNumber);
 
 		return {
+			title: 'BINGO',
 			blue: false,
     	green: false,
     	red: false,
@@ -65,7 +66,7 @@ var Bingo = React.createClass({
 
 		return (
 			<div className={classes}>
-				<h1>Bingo Game</h1>
+				<h1>{this.state.title}</h1>
 				<div className="bingo">
 					{cells}
 				</div>
