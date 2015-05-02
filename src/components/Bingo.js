@@ -1,6 +1,7 @@
 var socket = require('socket.io-client')('http://localhost:3000');
 var React = require('react');
 var Cell = require('./Cell.js');
+var Line = require('./Line.js');
 
 var Bingo = React.createClass({
 	getInitialState: function() {
@@ -15,7 +16,20 @@ var Bingo = React.createClass({
     	orange: false,
     	purple: false,
 			board: [],
-			lines: []
+			lines: [
+				'line left_diagonal',
+				'line right_diagonal',
+				'line horizontal horizontal_line_one',
+				'line horizontal horizontal_line_two',
+				'line horizontal horizontal_line_three',
+				'line horizontal horizontal_line_four',
+				'line horizontal horizontal_line_five',
+				'line vertical vertical_line_one',
+				'line vertical vertical_line_two',
+				'line vertical vertical_line_three',
+				'line vertical vertical_line_four',
+				'line vertical vertical_line_five'
+			]
 		}
 	},
 
@@ -54,6 +68,12 @@ var Bingo = React.createClass({
 					onClick={self.handleClick} />
 			);
 		});
+
+		var lines = this.state.lines.map(function(line) {
+			return (
+				<Line position={line} />
+			);
+		});
 		
 		var classes = React.addons.classSet({
 				container: true,
@@ -68,6 +88,7 @@ var Bingo = React.createClass({
 			<div className={classes}>
 				<h1>{this.state.title}</h1>
 				<div className="bingo">
+					{lines}
 					{cells}
 				</div>
 			</div>
