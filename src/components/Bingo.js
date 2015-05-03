@@ -1,5 +1,6 @@
 var socket = require('socket.io-client')('http://localhost:3000');
 var React = require('react');
+var classNames = require('classNames');
 var Cell = require('./Cell.js');
 var Line = require('./Line.js');
 
@@ -75,7 +76,7 @@ var Bingo = React.createClass({
 			);
 		});
 		
-		var classes = React.addons.classSet({
+		var classes = classNames({
 				container: true,
         blue: this.state.blue,
         green: this.state.green,

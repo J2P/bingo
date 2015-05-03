@@ -1,4 +1,5 @@
-var React = require('react/addons');
+var React = require('react');
+var classNames = require('classNames');
 
 var Cell = React.createClass({
 	handleClick: function() {
@@ -6,7 +7,7 @@ var Cell = React.createClass({
 	},
 
 	render: function() {
-		var classes = React.addons.classSet({
+		var classes = classNames({
 			cell: true,
 			selected: this.props.selected
     });
