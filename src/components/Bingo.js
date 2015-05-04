@@ -17,20 +17,7 @@ var Bingo = React.createClass({
     	orange: false,
     	purple: false,
 			board: [],
-			lines: [
-				'line left_diagonal',
-				'line right_diagonal',
-				'line horizontal horizontal_line_one',
-				'line horizontal horizontal_line_two',
-				'line horizontal horizontal_line_three',
-				'line horizontal horizontal_line_four',
-				'line horizontal horizontal_line_five',
-				'line vertical vertical_line_one',
-				'line vertical vertical_line_two',
-				'line vertical vertical_line_three',
-				'line vertical vertical_line_four',
-				'line vertical vertical_line_five'
-			]
+			lines: []
 		}
 	},
 
@@ -55,7 +42,10 @@ var Bingo = React.createClass({
 	},
 
 	changeNumber: function(data) {
-		this.setState({board: data.users[this.user]['board']});
+		this.setState({
+			board: data.users[this.user]['board'],
+			lines: data.users[this.user]['lines']
+		});
 	},
 
 	render: function() {
