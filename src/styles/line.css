@@ -10,13 +10,13 @@
     display: block;
 }
 
-.left_diagonal {
+.left_cross {
     transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
 
-.right_diagonal {
+.right_cross {
     transform: rotate(315deg);
     -ms-transform: rotate(315deg);
     -webkit-transform: rotate(315deg);
