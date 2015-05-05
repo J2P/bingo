@@ -1,5 +1,6 @@
 var React = require('react');
 var classNames = require('classNames');
+React.initializeTouchEvents(true);
 
 var Cell = React.createClass({
 	handleClick: function() {
@@ -13,7 +14,7 @@ var Cell = React.createClass({
     });
 
 		return (
-			<div className={classes} onClick={this.handleClick}>
+			<div className={classes} onClick={this.handleClick} onTouchStart={this.handleClick}>
 				<div className="circle"></div>
 				{this.props.value}
 			</div>

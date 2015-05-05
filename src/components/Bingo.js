@@ -3,6 +3,7 @@ var React = require('react');
 var classNames = require('classNames');
 var Cell = require('./Cell.js');
 var Line = require('./Line.js');
+React.initializeTouchEvents(true);
 
 var Bingo = React.createClass({
 	getInitialState: function() {
@@ -56,7 +57,8 @@ var Bingo = React.createClass({
 					value={cell.value} 
 					key={cell.id} 
 					selected={cell.selected} 
-					onClick={self.handleClick} />
+					onClick={self.handleClick}
+					onTouchStart={self.handleClick} />
 			);
 		});
 
