@@ -7,7 +7,7 @@ var Line = require('./Line.js');
 var Bingo = React.createClass({
 	getInitialState: function() {
 		socket.on('init', this.setInitial);
-		socket.on('change:number', this.changeNumber);
+		socket.on('select:number', this.selectNumber);
 
 		return {
 			title: 'BINGO',
@@ -41,7 +41,7 @@ var Bingo = React.createClass({
 		this.setState(initData);
 	},
 
-	changeNumber: function(data) {
+	selectNumber: function(data) {
 		this.setState({
 			board: data.users[this.user]['board'],
 			lines: data.users[this.user]['lines']
