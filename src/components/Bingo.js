@@ -23,10 +23,7 @@ var Bingo = React.createClass({
 	},
 
 	componentDidMount: function() {
-		this.user = 'user_' + Math.random().toString(36).substring(7);
-		socket.emit('join', { 
-			user : this.user 
-		});
+		socket.emit('join');
 	},
 
 	handleClick: function(cell) {
@@ -37,15 +34,17 @@ var Bingo = React.createClass({
 	},
 	
 	setInitial: function(data) {
-		var initData = { board: data.board };
+		var initData = {};
+		initData['id'] = data.id
+		initData['board'] = data.board;
 		initData[data.color] = true;
 		this.setState(initData);
 	},
 
 	selectNumber: function(data) {
 		this.setState({
-			board: data.users[this.user]['board'],
-			lines: data.users[this.user]['lines']
+			board: data.users[this.state.id]['board'],
+			lines: data.users[this.state.id]['lines']
 		});
 	},
 
