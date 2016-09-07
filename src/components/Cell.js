@@ -1,6 +1,5 @@
 var React = require('react');
 var classNames = require('classNames');
-React.initializeTouchEvents(true);
 
 var Cell = React.createClass({
 	handleClick: function() {
