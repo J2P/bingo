@@ -19,8 +19,8 @@
   "homepage": "https://github.com/J2P/bingo",
   "dependencies": {
     "classnames": "^2.0.0",
-    "react": "^0.13.1",
-    "react-tools": "^0.13.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "socket.io-client": "^1.4.8"
   },
   "devDependencies": {
