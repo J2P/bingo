@@ -1,24 +1,20 @@
-var React = require('react');
-var classNames = require('classNames');
+import React from "react";
+import classNames from "classnames";
 
-var Cell = React.createClass({
-	handleClick: function() {
-		this.props.onClick(this);
-	},
-
-	render: function() {
-		var classes = classNames({
-			cell: true,
-			selected: this.props.selected
+class Cell extends React.Component {
+  render() {
+    var classes = classNames({
+      cell: true,
+      selected: this.props.selected
     });
 
-		return (
-			<div className={classes} onClick={this.handleClick} onTouchStart={this.handleClick}>
-				<div className="circle"></div>
-				{this.props.value}
-			</div>
-		);
-	}
-});
+    return (
+      <div className={classes} onClick={e => this.props.onClick(this)}>
+        <div className="circle" />
+        {this.props.value}
+      </div>
+    );
+  }
+}
 
-module.exports = Cell;
+export default Cell;

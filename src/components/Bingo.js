@@ -1,90 +1,73 @@
-var socket = require('socket.io-client')('http://localhost:3000');
-var React = require('react');
-var classNames = require('classNames');
-var Cell = require('./Cell.js');
-var Line = require('./Line.js');
+import socketClient from "socket.io-client";
+import React from "react";
+import Cell from "./Cell";
+import Line from "./Line";
 
-var Bingo = React.createClass({
-	getInitialState: function() {
-		socket.on('init', this.setInitial);
-		socket.on('select:number', this.selectNumber);
+const socket = socketClient("http://localhost:4000");
 
-		return {
-			title: 'BINGO',
-			blue: false,
-    	green: false,
-    	red: false,
-    	orange: false,
-    	purple: false,
-			board: [],
-			lines: []
-		}
-	},
+class Bingo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "BINGO",
+      color: "",
+      board: [],
+      lines: []
+    };
+  }
 
-	componentDidMount: function() {
-		socket.emit('join');
-	},
+  componentDidMount() {
+    socket.emit("join");
+    socket.on("init", data => this.setInitial(data));
+    socket.on("select:number", data => this.selectNumber(data));
+  }
 
-	handleClick: function(cell) {
-		socket.emit('send:number', {
-			user: this.user,
-			number: cell.props.value
-		});
-	},
-	
-	setInitial: function(data) {
-		var initData = {};
-		initData['id'] = data.id
-		initData['board'] = data.board;
-		initData[data.color] = true;
-		this.setState(initData);
-	},
+  handleClick(cell) {
+    socket.emit("send:number", {
+      user: this.user,
+      number: cell.props.value
+    });
+  }
 
-	selectNumber: function(data) {
-		this.setState({
-			board: data.users[this.state.id]['board'],
-			lines: data.users[this.state.id]['lines']
-		});
-	},
+  setInitial(data) {
+    this.setState({
+      id: data.id,
+      board: data.board,
+      color: data.color
+    });
+  }
 
-	render: function() {
-		var self = this;
-		var cells = this.state.board.map(function(cell) {
-			return (
-				<Cell 
-					value={cell.value} 
-					key={cell.id} 
-					selected={cell.selected} 
-					onClick={self.handleClick}
-					onTouchStart={self.handleClick} />
-			);
-		});
+  selectNumber(data) {
+    this.setState({
+      board: data.users[this.state.id]["board"],
+      lines: data.users[this.state.id]["lines"]
+    });
+  }
 
-		var lines = this.state.lines.map(function(line) {
-			return (
-				<Line position={line} />
-			);
-		});
-		
-		var classes = classNames({
-				container: true,
-        blue: this.state.blue,
-        green: this.state.green,
-        red: this.state.red,
-        orange: this.state.orange,
-        purple: this.state.purple,
+  render() {
+    var cells = this.state.board.map(cell => (
+      <Cell
+        value={cell.value}
+        key={cell.id}
+        selected={cell.selected}
+        onClick={this.handleClick.bind(this)}
+      />
+    ));
+
+    var lines = this.state.lines.map(function(line, index) {
+      return <Line position={line} key={index} />;
     });
 
-		return (
-			<div className={classes}>
-				<h1>{this.state.title}</h1>
-				<div className="bingo">
-					{lines}
-					{cells}
-				</div>
-			</div>
-		);
-	}
-});
+    return (
+      <div className={this.state.color}>
+        <h1>{this.state.title}</h1>
+        <div className="bingo">
+          {lines}
+          {cells}
+        </div>
+      </div>
+    );
+  }
+}
 
-module.exports = Bingo;
+export default Bingo;

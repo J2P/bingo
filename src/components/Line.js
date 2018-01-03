@@ -1,11 +1,9 @@
-var React = require('react');
+import React from "react";
 
-var Line = React.createClass({
-	render: function() {
-		return (
-			<div className={this.props.position}></div>
-		);
-	}
-});
+class Line extends React.Component {
+  render() {
+    return <div className={this.props.position} />;
+  }
+}
 
-module.exports = Line;
+export default Line;
