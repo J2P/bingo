@@ -24,8 +24,9 @@ class Bingo extends React.Component {
 
   handleClick(cell) {
     socket.emit("send:number", {
-      user: this.user,
-      number: cell.props.value
+      user: this.state.id,
+      number: cell.props.value,
+      roomName: this.state.roomName
     });
   }
 
@@ -33,7 +34,8 @@ class Bingo extends React.Component {
     this.setState({
       id: data.id,
       board: data.board,
-      color: data.color
+      color: data.color,
+      roomName: data.roomName
     });
   }
 
