@@ -1,14 +1,14 @@
-# Bingo Game [![Build Status](https://travis-ci.org/J2P/react-bingo.svg?branch=master)](https://travis-ci.org/J2P/react-bingo)
+# Bingo Game [![Build Status](https://travis-ci.org/J2P/bingo.svg?branch=master)](https://travis-ci.org/J2P/bingo)
 
 ## Screenshot
 
-![React Bingo Screenshot](screenshot/bingo_screenshot.jpg)
+![Bingo Screenshot](screenshot/bingo_screenshot.jpg)
 
 ## Installation
 
 ``` bash
-$ git clone https://github.com/J2P/react-bingo.git
-$ cd react-bingo
+$ git clone https://github.com/J2P/bingo.git
+$ cd bingo
 $ yarn
 $ yarn start
 ```
