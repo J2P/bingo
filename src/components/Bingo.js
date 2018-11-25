@@ -62,6 +62,7 @@ class Bingo extends React.Component {
     return (
       <div className={this.state.color}>
         <h1>BINGO</h1>
+        <div className="board">{ lines.length } Bingo</div>
         <div className="bingo">
           {lines}
           {cells}

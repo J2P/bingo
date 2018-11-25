@@ -33,6 +33,17 @@ h1 {
 .orange { background: #F93; }
 .purple { background: #6E5494; }
 
+.board {
+    width: 600px;
+    padding: 25px 0;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    border-radius: 5px;
+    margin: 25px auto;
+    font-size: 1.5rem;
+}
+
 .bingo {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
