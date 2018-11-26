@@ -1,71 +1,55 @@
-import socketClient from "socket.io-client";
-import React from "react";
-import Cell from "./Cell";
-import Line from "./Line";
+import socketClient from 'socket.io-client';
+import React from 'react';
+import Cell from './Cell';
+import Line from './Line';
 
-const socket = socketClient("http://localhost:4000");
+const socket = socketClient(`http://${window.location.hostname}:4000`, );
 
 class Bingo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      color: "",
-      board: [],
-      lines: []
-    };
+    this.state = {color: '', board: [], lines: [], roomName: ''};
   }
 
   componentDidMount() {
-    socket.emit("join");
-    socket.on("init", data => this.setInitial(data));
-    socket.on("select:number", data => this.selectNumber(data));
-  }
-
-  handleClick(cell) {
-    socket.emit("send:number", {
-      user: this.state.id,
-      number: cell.props.value,
-      roomName: this.state.roomName
+    socket.on('init', data => {
+      const {id, board, color, roomName} = data;
+      this.setState({id, board, color, roomName});
+    });
+    socket.on('select:number', data => {
+      const { users } = data;
+      const user = users[this.state.id];
+      const board = user['board'];
+      const lines = user['lines'];
+      this.setState({board, lines});
     });
   }
 
-  setInitial(data) {
-    this.setState({
-      id: data.id,
-      board: data.board,
-      color: data.color,
-      roomName: data.roomName
-    });
-  }
+  handleClick = cell => {
+    const { id , roomName } = this.state;
+    const number = cell.props.value;
 
-  selectNumber(data) {
-    this.setState({
-      board: data.users[this.state.id]["board"],
-      lines: data.users[this.state.id]["lines"]
-    });
+    socket.emit('send:number', {user: id, number, roomName});
   }
 
   render() {
-    var cells = this.state.board.map(cell => (
-      <Cell
-        value={cell.value}
-        key={cell.id}
-        selected={cell.selected}
-        onClick={this.handleClick.bind(this)}
-      />
+    const { board, lines, color, roomName } = this.state;
+
+    var cellList = board.map(cell => (
+      <Cell value={cell.value} key={cell.id} selected={cell.selected} onClick={this.handleClick} />
     ));
 
-    var lines = this.state.lines.map(function(line, index) {
-      return <Line position={line} key={index} />;
-    });
+    var lineList = lines.map((line, index) => (
+      <Line position={line} key={index} />
+    ));
 
     return (
-      <div className={this.state.color}>
+      <div className={color}>
         <h1>BINGO</h1>
-        <div className="board">{ lines.length } Bingo</div>
+        <div className="board">{lines.length} Bingo : {roomName}</div>
         <div className="bingo">
-          {lines}
-          {cells}
+          {lineList}
+          {cellList}
         </div>
       </div>
     );
