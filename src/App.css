@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height:100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  font-size: 3rem;
+  padding: 30px 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-family: 'Bungee Outline', cursive;
+}
+
+#root > div {
+  width: 100%;
+  height: 100%;
+}
+
+.blue { background: #4183C4; }
+.green { background: #6CC644; }
+.red { background: #BD2C00; }
+.orange { background: #F93; }
+.purple { background: #6E5494; }
+
+.board {
+  width: 600px;
+  padding: 25px 0;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  border-radius: 5px;
+  margin: 25px auto;
+  font-size: 1.5rem;
+}
+
+.bingo {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 0 10px;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.cell {
+background-color: rgba(255, 255, 255, 0.3);
+border: 3px solid #fff;
+font-size: 2.5rem;
+text-align: center;
+color: #fff;
+position: relative;
+width: 105px;
+height: 105px;
+line-height: 105px;
+border-radius: 10px;
+}
+
+.cell .circle {
+  position: absolute;
+  padding: 45px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cell.selected .circle {
+  display: block;
+}
+
+.Room-list {
+  padding: 16px 24px;
+  list-style: none;
+}
+
+.Room-list li {
+  border-bottom: 1px solid #ccc;
+}
+
+.Room-list .users {
+  font-size: 12px;
+  color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 520px) {
+  h1 {
+      /* margin: 0 auto 20px; */
+      font-size: 2rem;
+      padding: 10px 0;
+  }
+
+  .board {
+      width: 300px;
+      padding: 5px;
+      font-size: 1rem;
+  }
+
+  .bingo {
+      width: 300px;
+      height: 300px;
+  }
+
+  .cell {
+      font-size: 1.5rem;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      border-radius: 8px;
+  }
+
+  .cell .circle {
+      padding: 20px;
+  }
+}

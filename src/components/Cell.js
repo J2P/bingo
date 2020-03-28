@@ -1,19 +1,14 @@
-import React from "react";
+import React from 'react';
 
-class Cell extends React.Component {
-  render() {
-    const selected = this.props.selected ? "selected" : "";
+const Cell = ({ value, selected, onClick }) => {
+  const selectedClass = selected ? 'selected' : '';
 
-    return (
-      <div
-        className={`cell ${selected}`}
-        onClick={e => this.props.onClick(this)}
-      >
-        <div className="circle" />
-        {this.props.value}
-      </div>
-    );
-  }
+  return (
+    <div className={`cell ${selectedClass}`} onClick={onClick}>
+      <div className="circle" />
+      {value}
+    </div>
+  )
 }
 
 export default Cell;

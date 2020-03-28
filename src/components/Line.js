@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react';
 
-class Line extends React.Component {
-  render() {
-    return <div className={this.props.position} />;
-  }
-}
+const Line = () => (
+  <div className={this.props.position} />
+);
 
 export default Line;

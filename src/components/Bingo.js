@@ -1,59 +1,44 @@
-import socketClient from 'socket.io-client';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Cell from './Cell';
 import Line from './Line';
 
-const socket = socketClient(`http://${window.location.hostname}:4000`, );
+const Bingo = ({ socket, room, id }) => {
+  const { name, users } = room;
+  const user = users.filter(user => user.id === id)[0];
+  
+  const [color, setColor] = useState('');
+  const [board, setBoard] = useState([]);
+  const [lines, setLines] = useState([]);
 
-class Bingo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {color: '', board: [], lines: [], roomName: ''};
-  }
+  useEffect(() => {
+    setColor(user.color);
+    setBoard(user.board);
+    setLines(user.lines);
 
-  componentDidMount() {
-    socket.on('init', data => {
-      const {id, board, color, roomName} = data;
-      this.setState({id, board, color, roomName});
+    socket.on('select:number', users => {
+      const user = users.filter(user => user.id === id)[0];
+      setColor(user.color);
+      setBoard(user.board);
+      setLines(user.lines);
     });
-    socket.on('select:number', data => {
-      const { users } = data;
-      const user = users[this.state.id];
-      const board = user['board'];
-      const lines = user['lines'];
-      this.setState({board, lines});
-    });
-  }
+  }, []);
 
-  handleClick = cell => {
-    const { id , roomName } = this.state;
-    const number = cell.props.value;
+  const handleSend = number => {
+    socket.emit('send:number', id, number, name);
+  };
 
-    socket.emit('send:number', {user: id, number, roomName});
-  }
-
-  render() {
-    const { board, lines, color, roomName } = this.state;
-
-    var cellList = board.map(cell => (
-      <Cell value={cell.value} key={cell.id} selected={cell.selected} onClick={this.handleClick} />
-    ));
-
-    var lineList = lines.map((line, index) => (
-      <Line position={line} key={index} />
-    ));
-
-    return (
-      <div className={color}>
-        <h1>BINGO</h1>
-        <div className="board">{lines.length} Bingo : {roomName}</div>
-        <div className="bingo">
-          {lineList}
-          {cellList}
-        </div>
+  return (
+    <div className={color}>
+      <h1>BINGO</h1>
+      <div className="board">{lines.length} Bingo : {name}</div>
+      <div className="bingo">
+        {lines.map((line, index) => <Line key={index} position={line} />)}
+        {board.map(({ id, value, selected }) => (
+          <Cell key={id} value={value} selected={selected} onClick={() => handleSend(value)} />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Bingo;
