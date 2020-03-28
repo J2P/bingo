@@ -1,37 +1,35 @@
 {
-  "name": "react-bingo",
-  "version": "1.0.0",
-  "description": "Bingo Game",
-  "homepage": "https://github.com/J2P/react-bingo",
-  "author": "J2P",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/J2P/react-bingo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/J2P/react-bingo/issues"
+  "name": "bingo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "use-socket.io-client": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "dependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1",
-    "socket.io-client": "^2.0.4"
-  },
-  "devDependencies": {},
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
